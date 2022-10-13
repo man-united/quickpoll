@@ -1,10 +1,10 @@
-from flask import Flask, request
+from flask import Flask, request, send_from_directory
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS, cross_origin
 from datetime import datetime
 import os
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='backend/build', static_url_path='')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
 db = SQLAlchemy(app)
@@ -27,7 +27,12 @@ def format_poll(poll):
         'question': poll.question,
         'created_at': poll.created_at
     }
-    
+
+@app.route('/')
+@cross_origin()
+def serve():
+    return send_from_directory(app.static_folder, 'index.html')
+
 @app.route('/api')
 @cross_origin()
 def index():
@@ -43,13 +48,6 @@ def create_poll():
     db.session.add(poll)
     db.session.commit()
     return format_poll(poll)
-
-@app.route('/')
-@cross_origin()
-def serve():
-    return {
-        'message': 'Hello World!'
-    }
 
 if __name__ == '__main__':
     app.run()
