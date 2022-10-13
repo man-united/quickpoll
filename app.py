@@ -4,7 +4,7 @@ from flask_cors import CORS, cross_origin
 from datetime import datetime
 import os
 
-app = Flask(__name__, static_folder='backend/build', static_url_path='')
+app = Flask(__name__, static_folder='frontend/build', static_url_path='')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
 db = SQLAlchemy(app)
