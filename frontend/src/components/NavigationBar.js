@@ -8,9 +8,9 @@ export default function NavigationBar() {
       <Container>
         <Navbar.Brand href="/">Quickpoll</Navbar.Brand>
         <Nav className="me-auto">
-          <Nav.Link href="#majority">Majority</Nav.Link>
-          <Nav.Link href="#proportional">Proportional</Nav.Link>
-          <Nav.Link href="#prefrential">Preferential</Nav.Link>
+          <Nav.Link href="/majority">Majority</Nav.Link>
+          <Nav.Link href="/proportional">Proportional</Nav.Link>
+          <Nav.Link href="/prefrential">Preferential</Nav.Link>
         </Nav>
       </Container>
     </Navbar>
