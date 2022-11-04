@@ -3,7 +3,7 @@ function App() {
   return (
     <div className="App">
       <NavigationBar />
-      <header className="App-header">React App</header>
+      <header className="App-header">Welcome to quickpoll</header>
     </div>
   );
 }
