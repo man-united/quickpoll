@@ -33,6 +33,11 @@ def format_poll(poll):
 def serve():
     return send_from_directory(app.static_folder, 'index.html')
 
+@app.route('/majority')
+@cross_origin()
+def serve_majority():
+    return send_from_directory(app.static_folder, 'index.html')
+
 @app.route('/api')
 @cross_origin()
 def index():
