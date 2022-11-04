@@ -1,7 +1,8 @@
 import NavigationBar from './components/NavigationBar';
 function App() {
-  var end = window.location.href;
-  console.log(end);
+  console.log(window.location.href);
+  console.log('hello');
+  console.log(window.location.pathname);
   return (
     <div className="App">
       <NavigationBar />
