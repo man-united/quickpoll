@@ -29,10 +29,13 @@ def format_poll(poll):
     }
 
 @app.route('/')
-@app.route('/majority')
 @cross_origin()
 def serve():
-    return send_from_directory(app.static_folder, 'index.html')
+    return send_from_directory(app.static_folder, 'index.html', id=0)
+
+@app.route('/poll/<id>')
+def poll(id):
+    return send_from_directory(app.static_folder, 'index.html', id=id)
 
 @app.route('/api')
 @cross_origin()
