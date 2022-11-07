@@ -5,8 +5,8 @@ from datetime import datetime
 import os
 
 app = Flask(__name__, static_folder='frontend/build', static_url_path='')
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
+#app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+#app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
 db = SQLAlchemy(app)
 CORS(app)
 
@@ -29,9 +29,13 @@ def format_poll(poll):
     }
 
 @app.route('/')
-@app.route('/poll/<id>')
 @cross_origin()
 def serve():
+    return send_from_directory(app.static_folder, 'index.html')
+
+@app.route('/poll/<id>/')
+@cross_origin()
+def poll(id):
     return send_from_directory(app.static_folder, 'index.html')
 
 @app.route('/api')
