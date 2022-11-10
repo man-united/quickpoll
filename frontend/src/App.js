@@ -1,15 +1,11 @@
 import NavigationBar from './components/NavigationBar';
-function App() {
-  var href = window.location.href;
-  var path = window.location.pathname;
-  alert('href: ' + href);
-  alert('path: ' + path);
 
+function App() {
   return (
-    <div className="App">
+    <>
       <NavigationBar />
-      <header className="App-header">Welcome to quickpoll</header>
-    </div>
+      This is the app
+    </>
   );
 }
 

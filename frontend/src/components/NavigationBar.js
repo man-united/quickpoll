@@ -8,11 +8,19 @@ export default function NavigationBar() {
       <Container>
         <Navbar.Brand href="/">Quickpoll</Navbar.Brand>
         <Nav className="me-auto">
-          <Nav.Link href="/majority">Majority</Nav.Link>
-          <Nav.Link href="/proportional">Proportional</Nav.Link>
-          <Nav.Link href="/prefrential">Preferential</Nav.Link>
+          <Nav.Link href="#majority" onClick={handleClick}>
+            Majority
+          </Nav.Link>
+          <Nav.Link href="#proportional" onClick={handleClick}>
+            Proportional
+          </Nav.Link>
+          <Nav.Link href="#preferential">Preferential</Nav.Link>
         </Nav>
       </Container>
     </Navbar>
   );
+}
+
+function handleClick() {
+  alert('hi you clicked');
 }
