@@ -17,7 +17,7 @@ function App() {
   };
 
   return (
-    <div style={{ textAlign: 'center' }}>
+    <div>
       <header>Hello World</header>
       <button onClick={fetchData}>Fetch Data</button>
       hello? {data === null ? <p>data is null</p> : <p>there is data</p>}
