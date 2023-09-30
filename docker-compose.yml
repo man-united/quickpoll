@@ -10,9 +10,11 @@ services:
     volumes:
       - ./mongodb-init:/docker-entrypoint-initdb.d
     environment:
-      MONGO_INITDB_ROOT_USERNAME: test-admin
-      MONGO_INITDB_ROOT_PASSWORD: test-password
-      MONGO_INITDB_DATABASE: testing
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_ROOT_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_ROOT_PASSWORD}
+      MONGO_INITDB_DATABASE: ${MONGO_DB_NAME}
+    env_file:
+      - .env
 
   client:
     container_name: quickpoll-client
@@ -23,8 +25,6 @@ services:
       - '3000:3000'
     networks:
       - app-network
-    depends_on:
-      - server
     volumes:
       - ./client:/app
       - '/app/node_modules'
@@ -38,9 +38,14 @@ services:
       - '8000:8000'
     networks:
       - app-network
+    environment:
+      MONGO_URL: ${MONGO_URL}
+      PORT: 8000
     volumes:
       - ./server:/app
       - '/app/node_modules'
+    env_file:
+      - .env
 
 networks:
   app-network:

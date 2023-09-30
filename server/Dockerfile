@@ -1,10 +1,10 @@
-FROM node:20-bookworm-slim
+FROM node:20-alpine
 
 WORKDIR /app
 
 RUN npm install -g nodemon
 
-COPY package.json .
+COPY package*.json .
 
 RUN npm install
 
