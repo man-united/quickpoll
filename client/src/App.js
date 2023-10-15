@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
+import config from './config';
 
 function App() {
   const [data, setData] = useState(null);
 
   const fetchData = async () => {
     try {
-      const response = await fetch('http://localhost:8000/polls');
+      const response = await fetch(config.POLLS_API_URL);
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
