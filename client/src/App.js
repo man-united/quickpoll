@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 
-function App() {
+const App = () => {
   const [data, setData] = useState(null);
 
   const fetchData = async () => {
     try {
-      const response = await fetch('http://localhost:8000/polls');
+      const response = await fetch(process.env.REACT_APP_SERVER_URL + '/polls');
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
@@ -29,6 +29,6 @@ function App() {
       )}
     </div>
   );
-}
+};
 
 export default App;

@@ -1,11 +1,12 @@
-const { MongoClient } = require('mongodb');
+import { MongoClient } from 'mongodb';
+import config from './config.js';
 
-let mongoURL = process.env.MONGO_URL;
+const MONGO_URL = config.MONGO_URL;
 
 let db;
 
-async function connectToMongoDB() {
-  const client = new MongoClient(mongoURL, {});
+const connectToMongoDB = async () => {
+  const client = new MongoClient(MONGO_URL, {});
 
   try {
     await client.connect();
@@ -14,13 +15,13 @@ async function connectToMongoDB() {
   } catch (error) {
     console.error('Error connecting to MongoDB:', error);
   }
-}
+};
 
-function getDB() {
+const getDb = () => {
   if (!db) {
     throw new Error('Database not initialized. Call connectToMongoDB first.');
   }
   return db;
-}
+};
 
-module.exports = { connectToMongoDB, getDB };
+export { connectToMongoDB, getDb };

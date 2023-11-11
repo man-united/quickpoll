@@ -1,10 +1,11 @@
-const express = require('express');
+import express from 'express';
+import { getDb } from '../db.js';
+
 const router = express.Router();
-const { getDB } = require('../db');
 
 router.get('/', async (req, res) => {
   try {
-    const db = getDB();
+    const db = getDb();
 
     const poll = await db.collection('polls').findOne({});
 
@@ -19,4 +20,4 @@ router.get('/', async (req, res) => {
   }
 });
 
-module.exports = router;
+export default router;
