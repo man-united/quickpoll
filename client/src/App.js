@@ -1,33 +1,14 @@
 import React, { useState } from 'react';
+import { Routes, Route } from 'react-router-dom';
+import routes from './routes';
 
 const App = () => {
-  const [data, setData] = useState(null);
-
-  const fetchData = async () => {
-    try {
-      const response = await fetch(process.env.REACT_APP_SERVER_URL + '/polls');
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-      const result = await response.json();
-      setData(result);
-    } catch (error) {
-      console.error('Error fetching data:', error);
-    }
-  };
-
   return (
-    <div>
-      <header>Hello World!!</header>
-      <button onClick={fetchData}>Fetch Data</button>
-      hello? {data === null ? <p>data is null</p> : <p>there is data</p>}
-      {data && (
-        <div>
-          <h2>Fetched Data</h2>
-          <pre>{JSON.stringify(data, null, 2)}</pre>
-        </div>
-      )}
-    </div>
+    <Routes>
+      {routes.map((route) => (
+        <Route exact path={route.path} render={route.component} />
+      ))}
+    </Routes>
   );
 };
 
